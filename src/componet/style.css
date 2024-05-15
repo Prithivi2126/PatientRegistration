@@ -1,6 +1,8 @@
 body{
     overflow-x: hidden;
     background-color:rgba(220, 220, 220, 0.451) !important;
+    /* background-image: url('/src/images/backimage.avif');
+    background-position: cover; */
   }
   
   .btn {
@@ -11,7 +13,7 @@ body{
   .card {
     box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
     border-radius: 10px !important;
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
   }
   
@@ -20,12 +22,37 @@ body{
     background-color: #F6F7FC;
   }
 
-
- 
-  
   .form-control {
     height: 3rem;
   }
+ 
+ 
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popup-content h3 {
+    margin-top: 0;
+  }
+.add{
+  background-color: rgb(5, 5, 117);
+}
   
  
   
