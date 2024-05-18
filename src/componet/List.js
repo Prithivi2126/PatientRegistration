@@ -39,81 +39,92 @@ const List = () => {
 
   const edit = (data) => {
     dispatch(getapiDataRequest(data.id));
-    nav(`/edit/${data.id}`);
+    nav(`/patient/edit/${data.id}`);
   };
 
   const Add = () => {
-    nav("/");
+    nav("/patient/create");
   };
   return (
     <div className="container">
       {state.loading ? (
         <ReactSpinner />
       ) : (
-        <div className="mt-2 table-responsive">
-          <div className="mt-3 text-end">
+        <div className="mt-2 ">
+          <div className="d-flex justify-content-between">
+          <div>
+          <h1 className=" fs-4 text-dark fw-bold mt-5 formhead">
+            PATIENT DETAILS
+          </h1>
+          </div>
+          <div className="mt-5">
             <button
               type="submit"
-              className="bg-primary text-white btn border-0 fw-bold mx-2 border-none rounded"
+              className="bg-primary text-white  btn border-0 fw-bold mx-2 border-none rounded"
               onClick={Add}
             >
-              Add
+             +Add
             </button>
           </div>
-          <table className="table table-striped bg-pri  mt-4 border-1">
-            <thead className="table-dark">
-              <tr>
-                <th scope="col">SI.NO</th>
-                <th scope="col">Name</th>
-                <th scope="col">DateofBirth</th>
-                <th scope="col">Age</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Address</th>
-                <th scope="col">ContactNumber</th>
-                <th scope="col">EmergencyContact</th>
-                <th scope="col">PrimaryCarePhysician</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {state.array &&
-                state.array.map((res, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{res.name}</td>
-                    <td>{res.date}</td>
-                    <td>{res.age}</td>
-                    <td>{res.gender}</td>
-                    <td>{res.address}</td>
-                    <td>{res.number}</td>
-                    <td>{res.emergencyno}</td>
-                    <td>{res.primaryPhysician}</td>
-                    <td>
-                      <div className="d-flex">
-                        <div>
-                          <button
-                            type="submit"
-                            onClick={() => edit(res)}
-                            className="bg-success text-white btn border-0 fw-bold mx-2 border-none rounded"
-                          >
-                            Edit
-                          </button>
+          </div>
+        
+          <div className="table-responsive">
+            <table className="table table-striped bg-pri  mt-4 border-1">
+              <thead className="table-dark">
+                <tr>
+                  <th scope="col">SI.NO</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">DateofBirth</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">ContactNumber</th>
+                  <th scope="col">EmergencyContact</th>
+                  <th scope="col">PrimaryCarePhysician</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {state.array &&
+                  state.array.map((res, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{res.name}</td>
+                      <td>{res.date}</td>
+                      <td>{res.age}</td>
+                      <td>{res.gender}</td>
+                      <td>{res.address}</td>
+                      <td>{res.number}</td>
+                      <td>{res.emergencyno}</td>
+                      <td>{res.primaryPhysician}</td>
+                      <td>
+                        <div className="d-flex">
+                          
+                          <div>
+                            <button
+                              type="submit"
+                              onClick={() => edit(res)}
+                              className=" text-white btnedit border-0 p-1 fw-bold mx-2 border-none rounded"
+                            >
+                              Edit
+                            </button>
+                          </div>
+                          <div>
+                            <button
+                              type="submit"
+                              onClick={() => Delete(res.id)}
+                              className=" text-white  btndel p-1 border-0 fw-bold mx-2 border-none rounded"
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
-                        <div>
-                          <button
-                            type="submit"
-                            onClick={() => Delete(res.id)}
-                            className="bg-danger text-white  btn border-0 fw-bold mx-2 border-none rounded"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
           {showDeleteConfirmation && (
             <div className="popup">
               <div className="popup-content">
@@ -121,13 +132,13 @@ const List = () => {
                 <p>Are you sure you want to delete this item?</p>
                 <div className="button-container">
                   <button
-                    className="btn btn-danger me-2 "
+                    className="bg-success text-white btn border-0 fw-bold mx-2 border-none rounded"
                     onClick={handleDeleteConfirmed}
                   >
                     Yes
                   </button>
                   <button
-                    className="btn btn-secondary "
+                    className="bg-danger text-white  btn border-0 fw-bold mx-2 border-none rounded  "
                     onClick={handleDeleteCancelled}
                   >
                     No

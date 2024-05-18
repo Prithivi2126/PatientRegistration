@@ -32,7 +32,9 @@ const Edit = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
+    name: Yup.string()
+    .matches(/^[A-Za-z\s]+$/, "Name must contain only letters")
+    .required("Name is required"),
     date: Yup.date().required("Date of Birth is required"),
     age: Yup.number().required("Age is required"),
     gender: Yup.string().required("Gender is required"),
@@ -44,7 +46,11 @@ const Edit = () => {
     emergencyno: Yup.string()
       .matches(/^[0-9]+$/, "Must be a number")
       .length(10, "Emergency Contact must be exactly 10 digits")
-      .required("Emergency Contact is required"),
+      .required("Emergency Contact is required")
+      .notOneOf(
+        [Yup.ref("number")],
+        "Emergency Contact cannot be the same as Contact Number"
+      ),
     primaryPhysician: Yup.string().required(
       "Primary Care Physician is required"
     ),
@@ -53,26 +59,29 @@ const Edit = () => {
   const handleSubmit = (values) => {
     const updatedData = { ...formData, ...values };
     dispatch(putDataRequest(updatedData));
-    nav("/list");
+    nav("/patient/list");
   };
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
+      className="d-flex justify-content-center  align-items-center mt-3"
       style={{ height: "100vh" }}
     >
       {state.loading ? (
         <ReactSpinner />
       ) : (
         <div className="card">
-          <h1 className="text-center mt-3">Edit Patient Details</h1>
+          <h1 className="text-start mx-3 fs-3 fw-bold mt-3 formhead">
+            {" "}
+            EDIT PATIENT DETAILS
+          </h1>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
             enableReinitialize
           >
-            <Form className="row mx-3 my-2">
+           <Form className="row mx-3 my-2">
               <div className="col-lg-6 col-md-6 d-flex flex-column content">
                 <div className="form-group text-start mt-3">
                   <label htmlFor="name">Patient's Name</label>
@@ -109,9 +118,9 @@ const Edit = () => {
                 <div className="form-group text-start mt-2">
                   <label htmlFor="age">Age</label>
                   <Field
-                    type="number"
+                    type="text"
                     className="form-control mt-2"
-                    placeholder="Enter Age"
+                    placeholder="Age"
                     id="age"
                     name="age"
                   />
@@ -123,18 +132,28 @@ const Edit = () => {
                 </div>
 
                 <div className="form-group text-start mt-2">
-                  <div className="form-group text-start mt-2">
+                  <div class="form-group text-start mt-2">
                     <label>Gender</label>
-                    <div className="row">
-                      <div className="col mt-3 ">
+                    <div className="d-flex flex-column ">
+                      <div className=" mt-1 ">
                         <label>
-                          <Field type="radio" name="gender" value="male" />
+                          <Field
+                            type="radio"
+                            name="gender"
+                            value="male"
+                            className="mx-2"
+                          />
                           Male
                         </label>
                       </div>
-                      <div className="col mt-3 ">
+                      <div className="mt-1 ">
                         <label>
-                          <Field type="radio" name="gender" value="female" />
+                          <Field
+                            type="radio"
+                            name="gender"
+                            value="female"
+                            className="mx-2"
+                          />
                           Female
                         </label>
                       </div>
@@ -214,10 +233,10 @@ const Edit = () => {
                   />
                 </div>
               </div>
-              <div className="container">
+              <div className="container d-flex justify-content-end">
                 <button
                   type="submit"
-                  className="btn btn-block w-50 mb-3 mt-3 fw-bold"
+                  className="btn btn-block  mb-3 mt-3 fw-bold"
                 >
                   Update
                 </button>
