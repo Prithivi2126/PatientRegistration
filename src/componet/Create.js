@@ -113,7 +113,7 @@ const Create = () => {
                   <div className="form-group text-start mt-2">
                     <label htmlFor="age">Age</label>
                     <Field
-                      type="text"
+                      type="number"
                       className="form-control mt-2"
                       placeholder="Age"
                       id="age"
@@ -181,7 +181,7 @@ const Create = () => {
                   <div className="form-group text-start mt-2">
                     <label htmlFor="number">Contact Number</label>
                     <Field
-                      type="text"
+                      type="number"
                       className="form-control mt-2"
                       placeholder="Enter Contact Number"
                       id="number"
@@ -197,7 +197,7 @@ const Create = () => {
                   <div className="form-group text-start mt-2">
                     <label htmlFor="emergencyno">Emergency Contact</label>
                     <Field
-                      type="text"
+                      type="number"
                       className="form-control mt-2"
                       placeholder="Enter Emergency Contact"
                       id="emergencyno"
@@ -229,13 +229,14 @@ const Create = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button
-                    type="button"
-                    className="btn btn-block mb-3 me-2 mt-3 fw-bold"
-                    onClick={() => resetForm()}
-                  >
-                    Reset
-                  </button>
+                <button
+  type="button"
+  className="btn btn-reset btn-block mb-3 me-2 mt-3 fw-bold"
+  onClick={() => resetForm()}
+>
+  Reset
+</button>
+
                   <button
                     type="submit"
                     className="btn btn-block mb-3 mt-3 fw-bold"

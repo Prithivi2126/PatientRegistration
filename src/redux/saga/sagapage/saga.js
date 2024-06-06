@@ -6,6 +6,7 @@ import { deleteDataSuccess, getDataSuccess, getapiDataSuccess, postDataSuccess, 
 function* postSaga( {payload}){
     try{
         const res=yield call(postData,payload)
+        
         console.log(res)
         const {data,status}=res
         console.log(status)

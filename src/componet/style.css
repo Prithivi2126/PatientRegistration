@@ -54,6 +54,12 @@ body {
 .add {
   background-color: rgb(5, 5, 117);
 }
+.btn-reset {
+  background-color: #6c757d !important; /* Dark gray color */
+  border-color: #6c757d !important;
+  color: #fff !important;
+}
+
 
 
 .logo {
